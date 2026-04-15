@@ -35,7 +35,7 @@ services:
       postgres:
         condition: service_healthy
       seaweedfs:
-        condition: service_started
+        condition: service_healthy
       chrome:
         condition: service_started
 
@@ -72,6 +72,14 @@ services:
     volumes:
       - "./compose/seaweedfs/s3.json:/etc/seaweedfs/s3.json:ro"
       - "seaweedfs-data:/data:rw"
+    networks:
+      - probo-net
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8333/"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 15s
 
   chrome:
     image: "chromedp/headless-shell:140.0.7259.2"
