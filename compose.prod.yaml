@@ -1,6 +1,7 @@
 services:
   probo:
     image: "ghcr.io/getprobo/probo:latest"
+    restart: on-failure
     environment:
       PROBOD_ENCRYPTION_KEY: ${PROBOD_ENCRYPTION_KEY}
       AUTH_COOKIE_SECRET: ${AUTH_COOKIE_SECRET}
@@ -31,11 +32,13 @@ services:
       CHROME_DP_ADDR: "chrome:9222"
     volumes:
       - "probo-data:/data"
+    networks:
+      - probo-net
     depends_on:
       postgres:
         condition: service_healthy
       seaweedfs:
-        condition: service_healthy
+        condition: service_started
       chrome:
         condition: service_started
 
@@ -52,7 +55,9 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
-      POSTGRES_DB: "probod"        # <-- add this line
+      POSTGRES_DB: "probod"
+    networks:
+      - probo-net
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -74,12 +79,6 @@ services:
       - "seaweedfs-data:/data:rw"
     networks:
       - probo-net
-    healthcheck:
-      test: ["CMD-SHELL", "nc -z localhost 8333 || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 30
-      start_period: 30s
 
   chrome:
     image: "chromedp/headless-shell:140.0.7259.2"
@@ -94,6 +93,8 @@ services:
       - "--disable-background-networking"
       - "--disable-background-timer-throttling"
       - "--disable-extensions"
+    networks:
+      - probo-net
 
 networks:
   probo-net:
