@@ -98,8 +98,6 @@ services:
           -volume.max=100 \
           -master.volumeSizeLimitMB=1024 \
           -dir=/data
-    ports:
-      - "8333"
     volumes:
       - "seaweedfs-data:/data:rw"
     networks:
