@@ -87,6 +87,10 @@ services:
       - "--disable-background-timer-throttling"
       - "--disable-extensions"
 
+networks:
+  probo-net:
+    driver: bridge
+
 volumes:
   probo-data:
   postgres-data:
