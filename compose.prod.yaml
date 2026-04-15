@@ -4,7 +4,7 @@ services:
     restart: on-failure
     networks:
       - probo-net
-      - coolify-proxy
+      - coolify
     environment:
       PROBOD_ENCRYPTION_KEY: ${PROBOD_ENCRYPTION_KEY}
       AUTH_COOKIE_SECRET: ${AUTH_COOKIE_SECRET}
@@ -120,8 +120,8 @@ services:
 networks:
   probo-net:
     driver: bridge
-  coolify-proxy:
-    external: true      # this network already exists, don't recreate it
+  coolify:
+    external: true
 
 volumes:
   probo-data:
