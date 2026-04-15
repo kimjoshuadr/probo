@@ -1,0 +1,176 @@
+probod:
+  api:
+    addr: 0.0.0.0:8080
+    cors:
+      allowed-origins:
+      - https://probo.coremote.io
+    extra-header-fields: {}
+    proxy-protocol:
+      trusted-proxies: null
+  auth:
+    cookie:
+      domain: probo.coremote.io
+      duration: 24
+      name: SSID
+      secret: D8OdpdAUcyVGwuswiK0W/WEfIiphe5sk/4wMK2cVKaI=
+      secure: true
+    disable-signup: false
+    google:
+      client-id: ""
+      client-secret: ""
+      enabled: false
+    invitation-confirmation-token-validity: 3600
+    magic-link-token-validity: 900
+    microsoft:
+      client-id: ""
+      client-secret: ""
+      enabled: false
+    password:
+      iterations: 1000000
+      pepper: mVuunpCSeWfN9yfFLEev3HO86D6z0qnsRRDthcsoguI=
+    password-reset-token-validity: 3600
+    saml:
+      certificate: |
+        -----BEGIN CERTIFICATE-----
+        MIIDJDCCAgygAwIBAgIRALFCAXHUR/OJQh66UDRYSmwwDQYJKoZIhvcNAQELBQAw
+        MjELMAkGA1UEBhMCVVMxDjAMBgNVBAoTBVByb2JvMRMwEQYDVQQDEwpwcm9iby1z
+        YW1sMB4XDTI2MDQxNTA4NDExOFoXDTM2MDQxNTA4NDExOFowMjELMAkGA1UEBhMC
+        VVMxDjAMBgNVBAoTBVByb2JvMRMwEQYDVQQDEwpwcm9iby1zYW1sMIIBIjANBgkq
+        hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsOyxX44+1JM4XN5HZW+6WbBgD1RQh8in
+        hZkzb1/iBZO/nj487E4565ZmkJkCFnglGiDfJvO1Q0OqEKgyc/krOJgGTCwst5Zl
+        qUa4Ai6v4XOl5w5nffM9g6vWjzz1iz7n2Obj42U2dGB68CaxmOnwGU3E8nYBUZVA
+        sADkQMniVJdtOPuQRM1OkAjjIKUNaPsDLrxPGNvvQQBwXz9oA93LK0QGrd3nEydk
+        oX0z333bXWCP4T39eOCvZ5QohM43W2D1YTssm4iqUIIJF3hgAt7ZjBs2FSEILR3b
+        CQLYl/veRDtb1jAMiGXcdUV1euRYLEqWXAn7TmCcRb26e/9sr9xBnwIDAQABozUw
+        MzAOBgNVHQ8BAf8EBAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwEwDAYDVR0TAQH/
+        BAIwADANBgkqhkiG9w0BAQsFAAOCAQEAAiIGs+EWZF1j1L/JTEEw++Xuhh9s8HzP
+        /elal425LjADzZSmjcONouudCx4mdAKyCUE6D3QSL5Wx/Yg54DnsAQ7UOPrEH2Xv
+        1Vl3sPs0SEaSbS5DDgw53igoA8Oz8wkVKXUJ54kQRaft0IqppRmRqlTXEqazG1Fs
+        sWGX+JVD9366cU5SamKRb8ex0VKxytw9j28IpYiJU1Ya/QJXJaGI35ONvM6ZKZgw
+        o3bFs/nLhm1KfRw/O56Zo4pA2knPbk+OxaQ8p2fh61ZxWQCSbbwBXtBKuBcsDQVF
+        ghKFj2/LGbFx4EQN2WLJo6cJu8LgltSly5BLimkq3lEYQtl+XW6wzw==
+        -----END CERTIFICATE-----
+      cleanup-interval-seconds: 0
+      domain-verification-interval-seconds: 60
+      domain-verification-resolver-addr: 8.8.8.8:53
+      private-key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEpAIBAAKCAQEAsOyxX44+1JM4XN5HZW+6WbBgD1RQh8inhZkzb1/iBZO/nj48
+        7E4565ZmkJkCFnglGiDfJvO1Q0OqEKgyc/krOJgGTCwst5ZlqUa4Ai6v4XOl5w5n
+        ffM9g6vWjzz1iz7n2Obj42U2dGB68CaxmOnwGU3E8nYBUZVAsADkQMniVJdtOPuQ
+        RM1OkAjjIKUNaPsDLrxPGNvvQQBwXz9oA93LK0QGrd3nEydkoX0z333bXWCP4T39
+        eOCvZ5QohM43W2D1YTssm4iqUIIJF3hgAt7ZjBs2FSEILR3bCQLYl/veRDtb1jAM
+        iGXcdUV1euRYLEqWXAn7TmCcRb26e/9sr9xBnwIDAQABAoIBAAqbc4+YOSHIiSFe
+        6DvnehjaJLWL519vWG/U6AsI3hsEfoFabOT5VFVQs+nTv+wgnDotTK5f/8w+bcny
+        3kIqvFHNIi+F7yZl8Ma4foa5oteAS1WHfQ1FkeNnitpqnAloUOvQUqBgVzvx9DJF
+        YkdvMHMWll9iU3Y/Mwd6U4pOMEYZoSb6nKoTH1ooQSX8HdSlR4bF+JUCzbB1BjGn
+        dUWjcugOT+S7m/VIvhL3kXoGV+f9fxk605NWsQPQ0pVOHt0jclNVrH+uYJ90RCp+
+        aVNjh+XSgqQ1nkEv4E1e4PunLAE+aoqCgjKu0P395ut5sFQx8BL3FVcO8pGy4rEq
+        jEVr8NkCgYEAyYTSDzaiWbS6bL2F8n7xTnp5wg2N/uAxozU4Pji5BChycVTwxMrb
+        lf0FZdh73jnrNKvVTM4pT99B51mrDPVi34qjO3DF0DxoYgtNJxCStBGIuaEEclr/
+        cTV6gagDmgz5ZS70FSDQTwjx+4y4sa/Nky6hXaSaiwJoGEt2jBUnPekCgYEA4MGy
+        Z5FsT3pqeDIm7LxWE5unWm6E9Yp4eURfbgDTqzvFQwMFWQpM04l8LHvA2bSo8QEN
+        SsQ3q6R6cz3gpLq8wpjLk4+2z6o1+clnJKGrC8CsPC/QSBrjFKpEgJnkPjzxKkVO
+        DgWwkajnfVvh4ybpx6ptsFebX19ziQ7/V4MNpkcCgYEAuneeb9lcDKnAvxH3udVg
+        r/+AXuFv/OGyzJRYQKr3+DL9AoVYbKBQ487GieDxbUYmsAw4SOOTMochUlOUhV8i
+        aDq+pCfLws3CwMY4U+dv+BMpcqrdlHtDVpvnicXP32IV+1yhGlPMrPVYBC3IURKd
+        pI1HX4EKR4qoi6J4RVLlhtECgYBCxYjI+A0jd4zV9KBXyIQSAzYuyZK6l86+yC9J
+        sPkxb+pkxCr8jvDQD5JSbNmYU/G018kpIy4e0hiG0CVDCy806MviJNn8y+aJNOpt
+        mZIFRdJldxb7tPEtnIAJbK7ARr6m/jv4MnyIaZOMTJXJNDBT3zADKaPBK8xZNZlq
+        WEbf1QKBgQCKDqZJ+M8JBzW6RWA6WSBu/OQju5LrK18DqaoUbbnj8YaCudk3bFCt
+        n0Xn2dC2TCzKz2ElT9PLwhnbs6qEzjBUQxJAFWAINt9cevPiQiw26efvYr3ICSPL
+        iinglwE8qYQb7k7Cem2e632Gxhvx+F09NUZzRoHQS9cv9EPyt/OgdA==
+        -----END RSA PRIVATE KEY-----
+      session-duration: 604800
+  aws:
+    access-key-id: probod
+    bucket: probod
+    endpoint: https://s3-probo.coremote.io
+    region: us-east-1
+    secret-access-key: thisisnotasecret
+    use-path-style: true
+  base-url: https://probo.coremote.io
+  chrome-dp-addr: chrome:9222
+  connectors: null
+  custom-domains:
+    acme:
+      account-key: ""
+      directory: https://acme-v02.api.letsencrypt.org/directory
+      email: admin@getprobo.com
+      key-type: EC256
+      root-ca: ""
+    caa-issuer-domain: letsencrypt.org
+    cname-target: custom.getprobo.com
+    provision-interval: 30
+    renewal-interval: 3600
+    resolver-addr: 8.8.8.8:53
+  encryption-key: hcAfx6/lKWqEHA6+agNiTQ3PaYWMrgB2ZBkldyPFpPw=
+  esign:
+    tsa-url: http://timestamp.digicert.com
+  evidence-describer:
+    interval: 10
+    max-concurrency: 10
+    max-tokens: null
+    model-name: ""
+    provider: ""
+    stale-after: 300
+    temperature: null
+  llm:
+    defaults:
+      max-tokens: 4096
+      model-name: gpt-4o
+      provider: openai
+      temperature: 0.1
+    providers:
+      anthropic:
+        api-key: ""
+        type: anthropic
+      openai:
+        api-key: ""
+        type: openai
+  notifications:
+    mailer:
+      mailer-interval: 60
+      sender-email: no-reply@yourdomain.com
+      sender-name: Probo
+      smtp:
+        addr: email-smtp.us-east-1.amazonaws.com:587
+        password: ""
+        tls-required: true
+        user: ""
+    slack:
+      sender-interval: 60
+      signing-secret: ""
+    webhook:
+      cache-ttl: 86400
+      sender-interval: 5
+  pg:
+    addr: probo-postgres:5432
+    ca-cert-bundle: ""
+    database: probod
+    debug: false
+    password: postgres
+    pool-size: 100
+    username: postgres
+  probo-agent:
+    max-tokens: null
+    model-name: ""
+    provider: ""
+    temperature: null
+  scim-bridge:
+    poll-interval: 30
+    sync-interval: 900
+  trust-center:
+    http-addr: :80
+    https-addr: :443
+    proxy-protocol:
+      trusted-proxies: null
+unit:
+  metrics:
+    addr: probo:8081
+  tracing:
+    addr: localhost:4317
+    batch-timeout: 5
+    export-timeout: 30
+    max-batch-size: 512
+    max-queue-size: 2048
