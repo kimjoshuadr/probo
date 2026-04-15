@@ -24,7 +24,7 @@ services:
       AWS_BUCKET: "probod"
       AWS_ACCESS_KEY_ID: "probod"
       AWS_SECRET_ACCESS_KEY: "thisisnotasecret"
-      AWS_ENDPOINT: "http://seaweedfs-store:8333"
+      AWS_ENDPOINT: ${AWS_ENDPOINT}
       AWS_USE_PATH_STYLE: "true"
       METRICS_ADDR: "probo:8081"
       TRACING_ADDR: ""
