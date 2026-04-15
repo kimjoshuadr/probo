@@ -70,7 +70,8 @@ services:
   seaweedfs-store:
     image: "chrislusf/seaweedfs:4.13"
     entrypoint: ["/bin/sh", "-c"]
-    ports: ["8333"]
+    ports:
+      - "8333"
     command:
       - |
         mkdir -p /etc/seaweedfs
