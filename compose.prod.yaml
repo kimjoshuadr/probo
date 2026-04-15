@@ -72,6 +72,9 @@ services:
     entrypoint: ["/bin/sh", "-c"]
     ports:
       - "8333"
+    labels:
+      - "traefik.http.services.https-0-kjlofio4amroge0h5s51p8l2-seaweedfs-store.loadbalancer.responseforwarding.flushinterval=1ms"
+      - "traefik.http.routers.https-0-kjlofio4amroge0h5s51p8l2-seaweedfs-store.middlewares=gzip"
     command:
       - |
         mkdir -p /etc/seaweedfs
