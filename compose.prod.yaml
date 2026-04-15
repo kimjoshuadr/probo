@@ -66,16 +66,34 @@ services:
 
   seaweedfs:
     image: "chrislusf/seaweedfs:4.13"
-    command: >
-      server
-      -s3
-      -s3.config=/etc/seaweedfs/s3.json
-      -s3.port=8333
-      -volume.max=100
-      -master.volumeSizeLimitMB=1024
-      -dir=/data
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        mkdir -p /etc/seaweedfs
+        cat > /etc/seaweedfs/s3.json << 'EOF'
+        {
+          "identities": [
+            {
+              "name": "probod",
+              "credentials": [
+                {
+                  "accessKey": "probod",
+                  "secretKey": "thisisnotasecret"
+                }
+              ],
+              "actions": ["Admin", "Read", "Write", "List", "Tagging", "Lock"]
+            }
+          ]
+        }
+        EOF
+        exec weed server \
+          -s3 \
+          -s3.config=/etc/seaweedfs/s3.json \
+          -s3.port=8333 \
+          -volume.max=100 \
+          -master.volumeSizeLimitMB=1024 \
+          -dir=/data
     volumes:
-      - "./compose/seaweedfs/s3.json:/etc/seaweedfs/s3.json:ro"
       - "seaweedfs-data:/data:rw"
     networks:
       - probo-net
