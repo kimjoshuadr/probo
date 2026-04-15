@@ -101,7 +101,10 @@ services:
     volumes:
       - "seaweedfs-data:/data:rw"
     networks:
-      - probo-net
+      probo-net:
+        priority: 1000
+      coolify:
+        priority: 100
 
   chrome:
     image: "chromedp/headless-shell:140.0.7259.2"
