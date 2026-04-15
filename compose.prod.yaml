@@ -75,11 +75,11 @@ services:
     networks:
       - probo-net
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:9333/cluster/status | grep -q leader"]
-      interval: 5s
+      test: ["CMD-SHELL", "nc -z localhost 8333 || exit 1"]
+      interval: 10s
       timeout: 5s
-      retries: 20
-      start_period: 15s
+      retries: 30
+      start_period: 30s
 
   chrome:
     image: "chromedp/headless-shell:140.0.7259.2"
