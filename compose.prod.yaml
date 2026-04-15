@@ -2,6 +2,9 @@ services:
   probo:
     image: "ghcr.io/getprobo/probo:latest"
     restart: on-failure
+    networks:
+      - probo-net
+      - coolify-proxy
     environment:
       PROBOD_ENCRYPTION_KEY: ${PROBOD_ENCRYPTION_KEY}
       AUTH_COOKIE_SECRET: ${AUTH_COOKIE_SECRET}
@@ -117,6 +120,8 @@ services:
 networks:
   probo-net:
     driver: bridge
+  coolify-proxy:
+    external: true      # this network already exists, don't recreate it
 
 volumes:
   probo-data:
