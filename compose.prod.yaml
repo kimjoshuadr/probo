@@ -1,7 +1,8 @@
-services:
-  probo:
+probo:
     image: "ghcr.io/getprobo/probo:latest"
     restart: on-failure
+    ports:
+      - "8080"
     networks:
       - probo-net
       - coolify
@@ -35,8 +36,6 @@ services:
       CHROME_DP_ADDR: "chrome:9222"
     volumes:
       - "probo-data:/data"
-    networks:
-      - probo-net
     depends_on:
       postgres:
         condition: service_healthy
@@ -44,86 +43,3 @@ services:
         condition: service_started
       chrome:
         condition: service_started
-
-  postgres:
-    image: "postgres:17.4"
-    shm_size: "1g"
-    command: >
-      postgres -c "shared_buffers=4GB"
-               -c "max_connections=200"
-               -c "log_statement=all"
-    volumes:
-      - "./compose/postgres:/docker-entrypoint-initdb.d:ro"
-      - "postgres-data:/var/lib/postgresql/data:rw"
-    environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-      POSTGRES_DB: "probod"
-    networks:
-      - probo-net
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-  seaweedfs:
-    image: "chrislusf/seaweedfs:4.13"
-    entrypoint: ["/bin/sh", "-c"]
-    command:
-      - |
-        mkdir -p /etc/seaweedfs
-        cat > /etc/seaweedfs/s3.json << 'EOF'
-        {
-          "identities": [
-            {
-              "name": "probod",
-              "credentials": [
-                {
-                  "accessKey": "probod",
-                  "secretKey": "thisisnotasecret"
-                }
-              ],
-              "actions": ["Admin", "Read", "Write", "List", "Tagging", "Lock"]
-            }
-          ]
-        }
-        EOF
-        exec weed server \
-          -s3 \
-          -s3.config=/etc/seaweedfs/s3.json \
-          -s3.port=8333 \
-          -volume.max=100 \
-          -master.volumeSizeLimitMB=1024 \
-          -dir=/data
-    volumes:
-      - "seaweedfs-data:/data:rw"
-    networks:
-      - probo-net
-
-  chrome:
-    image: "chromedp/headless-shell:140.0.7259.2"
-    command:
-      - "--headless"
-      - "--disable-gpu"
-      - "--disable-dev-shm-usage"
-      - "--hide-scrollbars"
-      - "--mute-audio"
-      - "--no-default-browser-check"
-      - "--no-first-run"
-      - "--disable-background-networking"
-      - "--disable-background-timer-throttling"
-      - "--disable-extensions"
-    networks:
-      - probo-net
-
-networks:
-  probo-net:
-    driver: bridge
-  coolify:
-    external: true
-
-volumes:
-  probo-data:
-  postgres-data:
-  seaweedfs-data:
