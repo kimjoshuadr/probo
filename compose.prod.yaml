@@ -8,7 +8,6 @@ services:
       - probo-net
       - coolify
     environment:
-      CONFIG_FILE: /etc/probod/config.yml
       PROBOD_ENCRYPTION_KEY: ${PROBOD_ENCRYPTION_KEY}
       AUTH_COOKIE_SECRET: ${AUTH_COOKIE_SECRET}
       AUTH_PASSWORD_PEPPER: ${AUTH_PASSWORD_PEPPER}
@@ -25,7 +24,7 @@ services:
       AWS_BUCKET: "probod"
       AWS_ACCESS_KEY_ID: "probod"
       AWS_SECRET_ACCESS_KEY: "thisisnotasecret"
-      AWS_ENDPOINT: "http://seaweedfs:8333"
+      AWS_ENDPOINT: "http://seaweedfs-store:8333"
       AWS_USE_PATH_STYLE: "true"
       METRICS_ADDR: "probo:8081"
       TRACING_ADDR: ""
@@ -38,14 +37,14 @@ services:
       CHROME_DP_ADDR: "chrome:9222"
     volumes:
       - "probo-data:/data"
-      - "./compose/probo/config.yml:/etc/probod/config.yml:ro"
     depends_on:
       probo-postgres:
         condition: service_healthy
-      seaweedfs:
+      seaweedfs-store:
         condition: service_started
       chrome:
         condition: service_started
+
   probo-postgres:
     image: "postgres:17.4"
     shm_size: "1g"
@@ -67,7 +66,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-  seaweedfs:
+
+  seaweedfs-store:
     image: "chrislusf/seaweedfs:4.13"
     entrypoint: ["/bin/sh", "-c"]
     command:
@@ -96,11 +96,14 @@ services:
           -volume.max=100 \
           -master.volumeSizeLimitMB=1024 \
           -dir=/data
+    ports:
+      - "8333"
     volumes:
       - "seaweedfs-data:/data:rw"
     networks:
       - probo-net
       - coolify
+
   chrome:
     image: "chromedp/headless-shell:140.0.7259.2"
     command:
@@ -116,11 +119,13 @@ services:
       - "--disable-extensions"
     networks:
       - probo-net
+
 networks:
   probo-net:
     driver: bridge
   coolify:
     external: true
+
 volumes:
   probo-data:
   postgres-data:
