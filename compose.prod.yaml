@@ -8,6 +8,7 @@ services:
       - probo-net
       - coolify
     environment:
+      CONFIG_FILE: /etc/probod/config.yml
       PROBOD_ENCRYPTION_KEY: ${PROBOD_ENCRYPTION_KEY}
       AUTH_COOKIE_SECRET: ${AUTH_COOKIE_SECRET}
       AUTH_PASSWORD_PEPPER: ${AUTH_PASSWORD_PEPPER}
