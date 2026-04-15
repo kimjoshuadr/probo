@@ -75,7 +75,7 @@ services:
     networks:
       - probo-net
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:8333/"]
+      test: ["CMD-SHELL", "wget -qO- http://localhost:9333/cluster/status | grep -q leader"]
       interval: 5s
       timeout: 5s
       retries: 20
