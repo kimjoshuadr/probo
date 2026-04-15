@@ -98,6 +98,7 @@ services:
       - "seaweedfs-data:/data:rw"
     networks:
       - probo-net
+      - coolify
   chrome:
     image: "chromedp/headless-shell:140.0.7259.2"
     command:
