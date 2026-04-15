@@ -38,6 +38,7 @@ services:
       CHROME_DP_ADDR: "chrome:9222"
     volumes:
       - "probo-data:/data"
+      - "./compose/probo/config.yml:/etc/probod/config.yml:ro"
     depends_on:
       probo-postgres:
         condition: service_healthy
